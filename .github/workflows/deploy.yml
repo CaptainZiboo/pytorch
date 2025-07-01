@@ -39,17 +39,20 @@ jobs:
         with:
           node-version: lts/*
           cache: "pnpm"
+          cache-dependency-path: "./website/pnpm-lock.yaml"
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        working-directory: ./website
       - name: Build
         run: pnpm run build
+        working-directory: ./website
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload dist folder
-          path: "./dist"
+          # Upload dist folder from website directory
+          path: "./website/dist"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
