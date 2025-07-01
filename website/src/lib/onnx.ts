@@ -8,7 +8,7 @@ export interface Prediction {
 
 let session: ort.InferenceSession | null = null;
 
-export async function load(path = "/model.onnx") {
+export async function load(path = "/pytorch/model.onnx") {
   if (session) return;
 
   try {
